@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Ali Amin Salah - Personal Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #f7f7f7, #e0e0e0);
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    p {
+      color: #555;
+    }
+
+    main {
+      padding: 40px 0;
+    }
+
+    h2 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: white;
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #ddd;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      color: #333;
+      margin-right: 10px;
+    }
+
+    .contact-btn:hover {
+      background-color: #f1f1f1;
+    }
+
+    .icon {
+      margin-right: 8px;
+    }
+
+    /* Extra styles for file upload and background change */
+    .upload-section {
+      margin-top: 20px;
+    }
+
+    #preview {
+      margin-top: 20px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    #preview img {
+      max-width: 200px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main-container">
+    <header class="bg-white shadow-md">
+      <div class="container">
+        <h1>Ali Amin Salah</h1>
+        <p>Graphic Designer | Communications Engineer</p>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Background and Image Upload Section -->
+      <section class="upload-section">
+        <h2>Customize Your Website</h2>
+
+        <!-- Background Color -->
+        <label for="bg-color">Choose Background Color:</label>
+        <input type="color" id="bg-color" />
+
+        <!-- Upload Background Image -->
+        <div style="margin-top: 10px;">
+          <label for="bg-image">Upload Background Image:</label>
+          <input type="file" id="bg-image" accept="image/*" />
+        </div>
+
+        <!-- Upload Project Images -->
+        <div style="margin-top: 20px;">
+          <label for="project-image">Upload Project Image:</label>
+          <input type="file" id="project-image" accept="image/*" multiple />
+        </div>
+
+        <!-- Preview Uploaded Images -->
+        <div id="preview"></div>
+      </section>
+
+      <!-- About Me Section -->
+      <section class="mb-12">
+        <h2>About Me</h2>
+        <p>
+          As a graphic designer with a background in Communications Engineering, I bring a unique blend of creative and
+          technical skills to my projects. My engineering background allows me to approach design challenges with a
+          systematic and analytical mindset, while my passion for graphic design enables me to create visually stunning
+          and effective solutions.
+        </p>
+      </section>
+
+      <!-- Contact Me Section -->
+      <section>
+        <h2>Contact Me</h2>
+        <div>
+          <a href="https://www.facebook.com/ali.amin.salah" class="contact-btn" target="_blank">
+            <span class="icon">📘</span> Ali Amin Salah
+          </a>
+          <a href="https://wa.me/201060901179" class="contact-btn" target="_blank">
+            <span class="icon">📱</span> WhatsApp: 01060901179
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2023 Ali Amin Salah. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JavaScript for background and image uploads -->
+  <script>
+    // Change background color
+    const bgColorInput = document.getElementById('bg-color');
+    bgColorInput.addEventListener('input', function () {
+      document.getElementById('main-container').style.backgroundColor = bgColorInput.value;
+    });
+
+    // Change background image
+    const bgImageInput = document.getElementById('bg-image');
+    bgImageInput.addEventListener('change', function () {
+      const file = bgImageInput.files[0];
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        document.getElementById('main-container').style.backgroundImage = `url(${e.target.result})`;
+      };
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Preview uploaded project images
+    const projectImageInput = document.getElementById('project-image');
+    const previewContainer = document.getElementById('preview');
+    projectImageInput.addEventListener('change', function () {
+      previewContainer.innerHTML = ''; // Clear previous images
+      const files = projectImageInput.files;
+      for (let i = 0; i < files.length; i++) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          previewContainer.appendChild(img);
+        };
+        reader.readAsDataURL(files[i]);
+      }
+    });
+  </script>
+</body>
+
+</html>
